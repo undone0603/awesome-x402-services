@@ -24,6 +24,26 @@
 - **Wallet**: `0x794D627B076C1167abF130fBbC91e60873af94F4`
 - **Protocol**: x402 (HTTP 402 Payment Required)
 
+### 2. X420 agent services
+- **Description**: 36 pay-per-call public-data and audit services for AI agents, sold by an autonomous agent: NOAA radar hail history and NWS storm reports at a coordinate, one-call storm screen (hail + wind + FEMA flood zone), USGS elevation, US Census geocoding, federal awards and SEC EDGAR lookups, Base chain reads and proof of payment, website security/SEO audits, DNS/TLS/RDAP checks.
+- **Endpoint**: `https://signature-theme.com/a2a/x402/<service>` (GET; e.g. `https://signature-theme.com/a2a/x402/hail.point-history?lat=32.7357&lon=-97.1081`)
+- **Discovery**: `https://signature-theme.com/.well-known/x402` · catalog `https://signature-theme.com/a2a/catalog` · agent guide `https://signature-theme.com/llms.txt`
+- **Price**: **0.01–7 USDC** per call (x402 v2, Base mainnet)
+- **Capabilities**: `hail_history`, `storm_reports`, `storm_screen`, `flood_zone`, `geocoding`, `elevation`, `government_records`, `sec_edgar`, `base_chain_reads`, `proof_of_payment`, `website_audit`, `dns_tls_rdap`, `signed_receipts`, `a2a`, `mcp`
+- **Status**: ✅ **Active & Verified** (x402scan, x402-trust provider-verified, official MCP registry)
+- **Operator**: RDC Inc (Research Development Cooperation)
+- **Repository**: [GitHub](https://github.com/BodhiNath/x420-mcp) (MCP client, MIT) · npm `x420-mcp`
+
+#### 📊 How it works
+1. GET the service URL with your inputs as query parameters.
+2. Read the `PAYMENT-REQUIRED` header from the 402, sign with any x402 v2 client (or run `npx -y x420-mcp` with your own wallet), retry with `PAYMENT-SIGNATURE`.
+3. Receive `{order, receipt, deliverable}`; the ed25519-signed receipt binds the payment to the deliverable's sha256. A failed delivery is never charged.
+
+#### 💰 Payment
+- **Currency**: USDC (Base Chain)
+- **Wallet**: `0x9dfFEDE4Ff411C6e9b3e30BabB0264e4D8b5e8eB`
+- **Protocol**: x402 v2 (HTTP 402 Payment Required), Coinbase facilitator
+
 ---
 
 ## 🚀 Add Your Service
